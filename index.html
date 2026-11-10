@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0b0e" />
+  <title>Pablo Mascaró — Portfolio</title>
+  <meta name="description" content="Portfolio de Pablo Mascaró Jiménez: guía turístico en formación, recepción de hotel, atención al cliente y perfil digital avanzado." />
+
+  <!--
+    ============================================================
+    PORTFOLIO — Pablo Mascaró Jiménez · v2
+    ------------------------------------------------------------
+    CAMBIOS v2:
+    · Skills: 3 pilares + marquee (mucho más limpio)
+    · Nueva sección #tech (DigComp N6 + hardware + código + foto)
+    · Contacto actualizado con GitHub
+    ------------------------------------------------------------
+    EDITA:
+    · Contacto → busca "EDITA AQUÍ"
+    · Colores / fuentes → style.css :root
+    ============================================================
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Fondo animado -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-dots"></div>
+    <div class="blobs">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+    </div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+  <!-- HUD de scroll tipo glyph (puntos tipo matriz) -->
+<div class="hud" aria-hidden="true">
+  <div class="hud-glyph" id="hudGlyph"></div>
+  <div class="hud-meta">
+    <span class="hud-label">SCR</span>
+    <span class="hud-pct" id="hudPct">00</span>
+  </div>
+</div>
+
+  <!-- ============================================================
+       NAV
+       ============================================================ -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#top" class="logo" aria-label="Volver arriba">
+        PM<span class="logo-dot">.</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#formacion">Formación</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#skills">Skills</a>
+        <a href="#tech">Tech</a>
+        <a href="#idiomas">Idiomas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         01 · HERO
+         ============================================================ -->
+    <section class="hero wrap" id="top">
+      <p class="hero-eyebrow hero-in" style="--d:.05s">
+        // portfolio · 2026<span class="blink">_</span>
+      </p>
+
+      <h1 class="hero-title">
+        <span class="line hero-in" style="--d:.12s">Pablo Mascaró</span>
+        <span class="line outline hero-in" style="--d:.2s">
+          Jiménez<span class="dot-accent">.</span>
+        </span>
+      </h1>
+
+      <p class="hero-sub hero-in" style="--d:.32s">
+        Guía turístico en formación · Recepción de hotel · Atención al cliente.
+        Planifico itinerarios, resuelvo imprevistos y cuido el detalle que hace
+        que alguien se sienta bien atendido.
+      </p>
+
+      <div class="hero-meta hero-in" style="--d:.42s">
+        <span>Granada · Menorca, ES</span>
+        <span class="clock" id="clock">00:00:00 · ES</span>
+      </div>
+
+      <div class="sticker hero-in" style="--d:.5s" aria-hidden="true">
+        ★ abierto a oportunidades
+      </div>
+
+      <!-- Toy: matriz de puntos reactiva al ratón -->
+<div class="dot-toy hero-in" style="--d:.6s" id="dotToy" aria-hidden="true"></div>
+
+      <a href="#sobre-mi" class="scroll-hint" aria-label="Bajar a la siguiente sección">
+        scroll ↓
+      </a>
+    </section>
+
+    <!-- ============================================================
+         02 · SOBRE MÍ
+         ============================================================ -->
+    <section class="section" id="sobre-mi">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 01 · sobre mí</span>
+          <h2 class="section-title">Curioso por defecto,<br>detallista por oficio.</h2>
+        </header>
+
+        <div class="about-card card reveal" style="--d:.08s">
+          <p>
+            Estudio el <strong>Grado Superior en Guía, Información y Asistencia
+            Turísticas</strong> en Granada. Dos veranos en la recepción y la sala
+            de un hotel en Menorca me enseñaron lo que no se aprende en clase:
+            que la atención al cliente es, sobre todo,
+            <strong>saber escuchar y resolver rápido</strong>.
+          </p>
+          <p>
+            Fuera del mostrador me muevo igual de bien: monto ordenadores,
+            soluciono redes y, cuando algo no existe, lo construyo.
+            <strong>Este portfolio, por ejemplo.</strong>
+            Hablo español, catalán e inglés, y aprendo herramientas nuevas
+            en cuestión de minutos.
+          </p>
+        </div>
+
+        <div class="stats">
+          <div class="stat card reveal" style="--d:.05s">
+            <div class="stat-value">3</div>
+            <div class="stat-label">idiomas · ES / CA / EN</div>
+          </div>
+          <div class="stat card reveal" style="--d:.12s">
+            <div class="stat-value">L6</div>
+            <div class="stat-label">competencias digitales UE</div>
+          </div>
+          <div class="stat card reveal" style="--d:.19s">
+            <div class="stat-value">2</div>
+            <div class="stat-label">temporadas en hotelería</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 · FORMACIÓN
+         ============================================================ -->
+    <section class="section" id="formacion">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 02 · formación</span>
+          <h2 class="section-title">Dónde aprendo.</h2>
+        </header>
+
+        <div class="timeline">
+          <article class="timeline-item card reveal">
+            <p class="timeline-meta">2026 — actualidad</p>
+            <h3 class="timeline-title">Grado Superior en Guía, Información y Asistencia Turísticas</h3>
+            <p class="timeline-org">CPIFP Hurtado de Mendoza · Granada</p>
+            <p class="timeline-desc">
+              Planificación, gestión y marketing de servicios turísticos;
+              guiado y acompañamiento de grupos; información local, regional y
+              nacional; diseño de itinerarios y productos turísticos; atención
+              multilingüe y gestión administrativa.
+            </p>
+            <div class="tags">
+              <span class="tag">EQF 5</span>
+              <span class="tag">Turismo</span>
+              <span class="tag">Guiado</span>
+            </div>
+          </article>
+
+          <article class="timeline-item card reveal" style="--d:.1s">
+            <p class="timeline-meta">2024 — 2026</p>
+            <h3 class="timeline-title">Bachillerato · Ciencias y Tecnología</h3>
+            <p class="timeline-org">IES Maria Àngels Cardona · Ciutadella de Menorca</p>
+            <p class="timeline-desc">
+              Base científica y tecnológica: matemáticas, física y tecnología.
+              Pensamiento analítico, rigor metodológico y resolución de
+              problemas complejos.
+            </p>
+            <div class="tags">
+              <span class="tag">EQF 4</span>
+              <span class="tag">Ciencias</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 · EXPERIENCIA
+         ============================================================ -->
+    <section class="section" id="experiencia">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 03 · experiencia</span>
+          <h2 class="section-title">Donde se aprende de verdad.</h2>
+        </header>
+
+        <div class="timeline">
+          <article class="timeline-item card reveal">
+            <p class="timeline-meta">may 2026 — sep 2026</p>
+            <h3 class="timeline-title">Recepcionista</h3>
+            <p class="timeline-org">Hotel Geminis Menorca · Ciutadella de Menorca</p>
+            <ul class="bullets">
+              <li>Front desk: check-in, check-out, atención al huésped y equipaje.</li>
+              <li>Información turística local: playas, restaurantes y actividades.</li>
+              <li>Apoyo administrativo y gestión de atención al cliente.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Front desk</span>
+              <span class="tag">Guest relations</span>
+              <span class="tag">Turismo local</span>
+            </div>
+          </article>
+
+          <article class="timeline-item card reveal" style="--d:.1s">
+            <p class="timeline-meta">may 2025 — ago 2025</p>
+            <h3 class="timeline-title">Camarero / Camarera</h3>
+            <p class="timeline-org">Hotel Geminis Menorca · Ciutadella de Menorca</p>
+            <ul class="bullets">
+              <li>Servicio de sala y bar: cafés, cobros de desayuno y atención directa.</li>
+              <li>Apoyo en cocina: tostadas, croissants y bollería local.</li>
+              <li>Mantenimiento, limpieza y sanidad de zonas de servicio.</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">Hospitality</span>
+              <span class="tag">TPV</span>
+              <span class="tag">Alto ritmo</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 · SKILLS  (v2 — pilares + marquee)
+         ============================================================ -->
+    <section class="section" id="skills">
+      <div class="wrap">
+
+        <header class="section-head reveal">
+          <span class="section-label">// 04 · skills</span>
+          <h2 class="section-title">Lo que pongo<br>sobre la mesa.</h2>
+        </header>
+
+        <!-- 3 pilares: resumen visual, no listas largas -->
+        <div class="pillars">
+          <article class="pillar card reveal">
+            <div class="pillar-head">
+              <span class="pillar-num">01</span>
+              <span class="pillar-icon" aria-hidden="true">↗</span>
+            </div>
+            <h3 class="pillar-title">Turismo</h3>
+            <p class="pillar-desc">
+              Guiado, información local, diseño de itinerarios
+              y trato intercultural.
+            </p>
+          </article>
+
+          <article class="pillar card reveal" style="--d:.08s">
+            <div class="pillar-head">
+              <span class="pillar-num">02</span>
+              <span class="pillar-icon" aria-hidden="true">↗</span>
+            </div>
+            <h3 class="pillar-title">Hospitalidad</h3>
+            <p class="pillar-desc">
+              Recepción, atención al cliente, TPV y gestión
+              de equipos bajo presión.
+            </p>
+          </article>
+
+          <article class="pillar card reveal" style="--d:.16s">
+            <div class="pillar-head">
+              <span class="pillar-num">03</span>
+              <span class="pillar-icon" aria-hidden="true">↗</span>
+            </div>
+            <h3 class="pillar-title">Digital & tech</h3>
+            <p class="pillar-desc">
+              Herramientas digitales, programación, hardware
+              y adopción rápida de software.
+            </p>
+          </article>
+        </div>
+      </div>
+
+      <!--
+        Marquee tipo Nothing OS: pausa al hover, loop infinito.
+        El JS duplica el contenido automáticamente para que sea continuo.
+        Para añadir/quitar skills, edita los <span class="tag"> de cada fila.
+      -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="tag">Guiado turístico</span>
+          <span class="tag">Diseño de itinerarios</span>
+          <span class="tag">Información local</span>
+          <span class="tag accent">HTML · CSS · JS</span>
+          <span class="tag">Front desk</span>
+          <span class="tag">Guest relations</span>
+          <span class="tag">Comunicación intercultural</span>
+          <span class="tag accent">Montaje de PCs</span>
+          <span class="tag">TPV</span>
+          <span class="tag">Hospitality</span>
+          <span class="tag">Microsoft Office</span>
+          <span class="tag accent">Fotografía</span>
+          <span class="tag">Google Suite</span>
+          <span class="tag">Redes Wi-Fi</span>
+        </div>
+      </div>
+
+      <div class="marquee marquee-reverse" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="tag">Resolución de conflictos</span>
+          <span class="tag accent">Aprendizaje rápido</span>
+          <span class="tag">Trabajo en equipo</span>
+          <span class="tag">Escucha activa</span>
+          <span class="tag">Bajo presión</span>
+          <span class="tag accent">Programación</span>
+          <span class="tag">Multitarea</span>
+          <span class="tag">Gestión del tiempo</span>
+          <span class="tag">Adaptabilidad</span>
+          <span class="tag accent">Hardware</span>
+          <span class="tag">Relaciones públicas</span>
+          <span class="tag">Problem solving</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         06 · TECH & HOBBIES  (NUEVA)
+         ============================================================ -->
+    <section class="section" id="tech">
+      <div class="wrap">
+
+        <header class="section-head reveal">
+          <span class="section-label">// 05 · tech & hobbies</span>
+          <h2 class="section-title">Bits, luz<br>y hardware.</h2>
+        </header>
+
+        <!-- Informe europeo de competencias digitales (DigComp) -->
+        <article class="competences card reveal">
+          <div class="competences-head">
+            <span class="competences-badge">
+              <span class="badge-dot" aria-hidden="true"></span>
+              EU digital skills · Level 6 Advanced
+            </span>
+            <span class="competences-meta">5 / 5 áreas</span>
+          </div>
+          <p class="competences-desc">
+            Autoevaluación según el marco europeo de competencias digitales
+            (DigComp). Nivel 6 «Advanced» en las cinco áreas del marco.
+          </p>
+          <ul class="comp-list">
+            <li class="comp-item" style="--level:100%; --i:0">
+              <span class="comp-name">Información y datos</span>
+              <span class="comp-bar"><span class="comp-fill"></span></span>
+              <span class="comp-level">L6</span>
+            </li>
+            <li class="comp-item" style="--level:100%; --i:1">
+              <span class="comp-name">Comunicación y colaboración</span>
+              <span class="comp-bar"><span class="comp-fill"></span></span>
+              <span class="comp-level">L6</span>
+            </li>
+            <li class="comp-item" style="--level:100%; --i:2">
+              <span class="comp-name">Creación de contenido digital</span>
+              <span class="comp-bar"><span class="comp-fill"></span></span>
+              <span class="comp-level">L6</span>
+            </li>
+            <li class="comp-item" style="--level:100%; --i:3">
+              <span class="comp-name">Seguridad</span>
+              <span class="comp-bar"><span class="comp-fill"></span></span>
+              <span class="comp-level">L6</span>
+            </li>
+            <li class="comp-item" style="--level:100%; --i:4">
+              <span class="comp-name">Resolución de problemas</span>
+              <span class="comp-bar"><span class="comp-fill"></span></span>
+              <span class="comp-level">L6</span>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Grid: código · hardware · fotografía -->
+        <div class="tech-grid">
+
+          <article class="tech-card card reveal">
+            <h3>Código & web</h3>
+            <ul class="tech-list">
+              <li>HTML, CSS y JavaScript</li>
+              <li>Este portfolio, hecho a mano</li>
+              <li>Diseño limpio y responsivo</li>
+              <li>Aprendizaje rápido de stacks nuevos</li>
+            </ul>
+          </article>
+
+          <article class="tech-card card reveal" style="--d:.08s">
+            <h3>Hardware & redes</h3>
+            <ul class="tech-list">
+              <li>Montaje de PCs desde cero</li>
+              <li>Reparación y cambio de componentes</li>
+              <li>Configuración de redes Wi-Fi</li>
+              <li>Diagnóstico de problemas técnicos</li>
+            </ul>
+          </article>
+
+          <article class="tech-card card reveal" style="--d:.16s">
+  <div class="tech-card-head">
+    <h3>Digital, IA & creatividad</h3>
+    <span class="glyph-mini" aria-hidden="true">
+      <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
+      <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
+      <i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i>
+    </span>
+  </div>
+  <ul class="tech-list">
+    <li>Edición de vídeo y fotografía</li>
+    <li>Manejo de herramientas de IA</li>
+    <li>Ofimática avanzada (Excel, Docs, PowerPoint)</li>
+    <li>DigComp Nivel 6 (UE) en las 5 áreas</li>
+  </ul>
+</article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         07 · IDIOMAS
+         ============================================================ -->
+    <section class="section" id="idiomas">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 06 · idiomas</span>
+          <h2 class="section-title">Tres idiomas,<br>cero barreras.</h2>
+        </header>
+
+        <div class="langs">
+          <div class="lang card reveal">
+            <div class="lang-top">
+              <span class="lang-name">Español</span>
+              <span class="lang-level">Nativo</span>
+            </div>
+            <div class="lang-bar"><span class="lang-fill" style="--level:100%"></span></div>
+            <p class="lang-detail">Lengua materna</p>
+          </div>
+
+          <div class="lang card reveal" style="--d:.08s">
+            <div class="lang-top">
+              <span class="lang-name">Catalán</span>
+              <span class="lang-level">C2</span>
+            </div>
+            <div class="lang-bar"><span class="lang-fill" style="--level:96%"></span></div>
+            <p class="lang-detail">C2 global · escritura C1</p>
+          </div>
+
+          <div class="lang card reveal" style="--d:.16s">
+            <div class="lang-top">
+              <span class="lang-name">Inglés</span>
+              <span class="lang-level">C1</span>
+            </div>
+            <div class="lang-bar"><span class="lang-fill" style="--level:82%"></span></div>
+            <p class="lang-detail">C1 global · writing B2</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         08 · CONTACTO
+         ============================================================ -->
+    <section class="section contact" id="contacto">
+      <div class="wrap">
+        <span class="section-label reveal">// 07 · contacto</span>
+        <h2 class="contact-title reveal">¿Hablamos<span class="dot-accent">?</span></h2>
+        <p class="contact-sub reveal">
+          Abierto a prácticas, proyectos y oportunidades en turismo,
+          recepción, atención al cliente y entornos digitales.
+        </p>
+
+        <!-- EDITA AQUÍ: tu email de contacto -->
+        <a class="contact-mail reveal" href="mailto:hola@tudominio.com">
+          hola@tudominio.com
+        </a>
+
+        <!-- EDITA AQUÍ: tus enlaces (borra los que no uses) -->
+        <div class="contact-links reveal">
+          <a class="glass-btn" href="https://github.com/coramj" target="_blank" rel="noopener">
+            GitHub <span class="arrow">↗</span>
+          </a>
+          <a class="glass-btn" href="#" target="_blank" rel="noopener">
+            LinkedIn <span class="arrow">↗</span>
+          </a>
+          <a class="glass-btn" href="cv.pdf" target="_blank" rel="noopener">
+            CV en PDF <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© <span id="year">2026</span> Pablo Mascaró · Hecho a mano con HTML, CSS y JS</p>
+      <div class="footer-right">
+        <span class="footer-dots" aria-hidden="true"></span>
+        <a href="#top" class="back-top">↑ volver arriba</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
