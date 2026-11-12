@@ -5,22 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0b0b0e" />
   <title>Pablo Mascaró — Portfolio</title>
-  <meta name="description" content="Portfolio de Pablo Mascaró Jiménez: guía turístico en formación, recepción de hotel, atención al cliente y perfil digital avanzado." />
-
-  <!--
-    ============================================================
-    PORTFOLIO — Pablo Mascaró Jiménez · v2
-    ------------------------------------------------------------
-    CAMBIOS v2:
-    · Skills: 3 pilares + marquee (mucho más limpio)
-    · Nueva sección #tech (DigComp N6 + hardware + código + foto)
-    · Contacto actualizado con GitHub
-    ------------------------------------------------------------
-    EDITA:
-    · Contacto → busca "EDITA AQUÍ"
-    · Colores / fuentes → style.css :root
-    ============================================================
-  -->
+  <meta name="description" content="Portfolio de Pablo Mascaró Jiménez: experiencia en recepción y sala, atención al cliente y estudios de turismo en curso." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,31 +34,32 @@
 
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
-  <!-- HUD de scroll tipo glyph (puntos tipo matriz) -->
-<div class="hud" aria-hidden="true">
-  <div class="hud-glyph" id="hudGlyph"></div>
-  <div class="hud-meta">
-    <span class="hud-label">SCR</span>
-    <span class="hud-pct" id="hudPct">00</span>
-  </div>
-</div>
 
   <!-- ============================================================
-       NAV
+       NAV — split-flap aeroportuario
        ============================================================ -->
   <header class="nav" id="nav">
     <div class="nav-inner">
       <a href="#top" class="logo" aria-label="Volver arriba">
-        PM<span class="logo-dot">.</span>
+        <span class="logo-text">PM<span class="logo-dot">.</span></span>
       </a>
+
+      <div class="nav-marker">
+        <span class="nav-marker-label">EN RUTA</span>
+        <div class="nav-flap" id="navFlap" aria-hidden="true" title="Sección actual">
+          <div class="flap-digit">0</div>
+          <div class="flap-digit">0</div>
+        </div>
+      </div>
 
       <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
         <a href="#sobre-mi">Sobre mí</a>
-        <a href="#formacion">Formación</a>
         <a href="#experiencia">Experiencia</a>
+        <a href="#formacion">Formación</a>
         <a href="#skills">Skills</a>
         <a href="#tech">Tech</a>
         <a href="#idiomas">Idiomas</a>
+        <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
       </nav>
 
@@ -107,9 +93,9 @@
       </h1>
 
       <p class="hero-sub hero-in" style="--d:.32s">
-        Guía turístico en formación · Recepción de hotel · Atención al cliente.
-        Planifico itinerarios, resuelvo imprevistos y cuido el detalle que hace
-        que alguien se sienta bien atendido.
+        Dos temporadas en hostelería me enseñaron a cuidar cada detalle: del
+        check-in al servicio en sala. Ahora estudio turismo y combino la atención
+        al cliente con curiosidad por la tecnología.
       </p>
 
       <div class="hero-meta hero-in" style="--d:.42s">
@@ -122,7 +108,7 @@
       </div>
 
       <!-- Toy: matriz de puntos reactiva al ratón -->
-<div class="dot-toy hero-in" style="--d:.6s" id="dotToy" aria-hidden="true"></div>
+      <div class="dot-toy hero-in" style="--d:.6s" id="dotToy" aria-hidden="true"></div>
 
       <a href="#sobre-mi" class="scroll-hint" aria-label="Bajar a la siguiente sección">
         scroll ↓
@@ -141,91 +127,34 @@
 
         <div class="about-card card reveal" style="--d:.08s">
           <p>
-            Estudio el <strong>Grado Superior en Guía, Información y Asistencia
-            Turísticas</strong> en Granada. Dos veranos en la recepción y la sala
-            de un hotel en Menorca me enseñaron lo que no se aprende en clase:
-            que la atención al cliente es, sobre todo,
-            <strong>saber escuchar y resolver rápido</strong>.
+            He trabajado dos temporadas en un hotel de Menorca, primero en sala
+            y después en recepción. Allí aprendí que atender bien es
+            <strong>escuchar, anticiparse y resolver con calma</strong>, incluso
+            cuando el ritmo aprieta.
           </p>
           <p>
-            Fuera del mostrador me muevo igual de bien: monto ordenadores,
-            soluciono redes y, cuando algo no existe, lo construyo.
-            <strong>Este portfolio, por ejemplo.</strong>
-            Hablo español, catalán e inglés, y aprendo herramientas nuevas
-            en cuestión de minutos.
+            Ahora curso el Grado Superior en Guía, Información y Asistencia
+            Turísticas. Fuera de clase me gusta entender cómo funcionan las
+            cosas: monto ordenadores, soluciono redes y
+            <strong>construyo proyectos como este portfolio</strong>.
           </p>
         </div>
 
-        <div class="stats">
-          <div class="stat card reveal" style="--d:.05s">
-            <div class="stat-value">3</div>
-            <div class="stat-label">idiomas · ES / CA / EN</div>
-          </div>
-          <div class="stat card reveal" style="--d:.12s">
-            <div class="stat-value">L6</div>
-            <div class="stat-label">competencias digitales UE</div>
-          </div>
-          <div class="stat card reveal" style="--d:.19s">
-            <div class="stat-value">2</div>
-            <div class="stat-label">temporadas en hotelería</div>
-          </div>
+        <div class="about-facts reveal" aria-label="Resumen profesional">
+          <span>02 temporadas en Menorca</span>
+          <span>Recepción <i aria-hidden="true">+</i> sala</span>
+          <span>Atención al huésped</span>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         03 · FORMACIÓN
-         ============================================================ -->
-    <section class="section" id="formacion">
-      <div class="wrap">
-        <header class="section-head reveal">
-          <span class="section-label">// 02 · formación</span>
-          <h2 class="section-title">Dónde aprendo.</h2>
-        </header>
-
-        <div class="timeline">
-          <article class="timeline-item card reveal">
-            <p class="timeline-meta">2026 — actualidad</p>
-            <h3 class="timeline-title">Grado Superior en Guía, Información y Asistencia Turísticas</h3>
-            <p class="timeline-org">CPIFP Hurtado de Mendoza · Granada</p>
-            <p class="timeline-desc">
-              Planificación, gestión y marketing de servicios turísticos;
-              guiado y acompañamiento de grupos; información local, regional y
-              nacional; diseño de itinerarios y productos turísticos; atención
-              multilingüe y gestión administrativa.
-            </p>
-            <div class="tags">
-              <span class="tag">EQF 5</span>
-              <span class="tag">Turismo</span>
-              <span class="tag">Guiado</span>
-            </div>
-          </article>
-
-          <article class="timeline-item card reveal" style="--d:.1s">
-            <p class="timeline-meta">2024 — 2026</p>
-            <h3 class="timeline-title">Bachillerato · Ciencias y Tecnología</h3>
-            <p class="timeline-org">IES Maria Àngels Cardona · Ciutadella de Menorca</p>
-            <p class="timeline-desc">
-              Base científica y tecnológica: matemáticas, física y tecnología.
-              Pensamiento analítico, rigor metodológico y resolución de
-              problemas complejos.
-            </p>
-            <div class="tags">
-              <span class="tag">EQF 4</span>
-              <span class="tag">Ciencias</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         04 · EXPERIENCIA
+         03 · EXPERIENCIA
          ============================================================ -->
     <section class="section" id="experiencia">
       <div class="wrap">
         <header class="section-head reveal">
-          <span class="section-label">// 03 · experiencia</span>
+          <span class="section-label">// 02 · experiencia</span>
           <h2 class="section-title">Donde se aprende de verdad.</h2>
         </header>
 
@@ -256,7 +185,7 @@
               <li>Mantenimiento, limpieza y sanidad de zonas de servicio.</li>
             </ul>
             <div class="tags">
-              <span class="tag">Hospitality</span>
+              <span class="tag">Hostelería</span>
               <span class="tag">TPV</span>
               <span class="tag">Alto ritmo</span>
             </div>
@@ -266,7 +195,58 @@
     </section>
 
     <!-- ============================================================
-         05 · SKILLS  (v2 — pilares + marquee)
+         04 · FORMACIÓN
+         ============================================================ -->
+    <section class="section" id="formacion">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 03 · formación</span>
+          <h2 class="section-title">Una ruta que sigue abierta.</h2>
+        </header>
+
+        <div class="study-records">
+          <article class="study-record reveal">
+            <p class="study-date">2026 — actualidad</p>
+            <div class="study-content">
+              <div class="study-heading">
+                <h3 class="timeline-title">Grado Superior en Guía, Información y Asistencia Turísticas</h3>
+                <span class="study-status">En curso</span>
+              </div>
+              <p class="timeline-org">CPIFP Hurtado de Mendoza · Granada</p>
+              <p class="timeline-desc">
+                Formación en planificación y gestión turística, guiado,
+                información local, diseño de itinerarios y atención multilingüe.
+              </p>
+              <div class="tags">
+                <span class="tag">EQF 5</span>
+                <span class="tag">Turismo</span>
+                <span class="tag">Guiado</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="study-record reveal" style="--d:.1s">
+            <p class="study-date">2024 — 2026</p>
+            <div class="study-content">
+              <div class="study-heading">
+                <h3 class="timeline-title">Bachillerato · Ciencias y Tecnología</h3>
+              </div>
+              <p class="timeline-org">IES Maria Àngels Cardona · Ciutadella de Menorca</p>
+              <p class="timeline-desc">
+                Base científica y tecnológica en matemáticas, física y tecnología.
+              </p>
+              <div class="tags">
+                <span class="tag">EQF 4</span>
+                <span class="tag">Ciencias</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         05 · SKILLS
          ============================================================ -->
     <section class="section" id="skills">
       <div class="wrap">
@@ -276,17 +256,16 @@
           <h2 class="section-title">Lo que pongo<br>sobre la mesa.</h2>
         </header>
 
-        <!-- 3 pilares: resumen visual, no listas largas -->
         <div class="pillars">
           <article class="pillar card reveal">
             <div class="pillar-head">
               <span class="pillar-num">01</span>
               <span class="pillar-icon" aria-hidden="true">↗</span>
             </div>
-            <h3 class="pillar-title">Turismo</h3>
+            <h3 class="pillar-title">Hospitalidad</h3>
             <p class="pillar-desc">
-              Guiado, información local, diseño de itinerarios
-              y trato intercultural.
+              Experiencia en recepción y sala, atención al cliente,
+              TPV y resolución de imprevistos.
             </p>
           </article>
 
@@ -295,10 +274,10 @@
               <span class="pillar-num">02</span>
               <span class="pillar-icon" aria-hidden="true">↗</span>
             </div>
-            <h3 class="pillar-title">Hospitalidad</h3>
+            <h3 class="pillar-title">Turismo · en formación</h3>
             <p class="pillar-desc">
-              Recepción, atención al cliente, TPV y gestión
-              de equipos bajo presión.
+              Aprendiendo sobre guiado, información local,
+              diseño de itinerarios y trato intercultural.
             </p>
           </article>
 
@@ -316,14 +295,9 @@
         </div>
       </div>
 
-      <!--
-        Marquee tipo Nothing OS: pausa al hover, loop infinito.
-        El JS duplica el contenido automáticamente para que sea continuo.
-        Para añadir/quitar skills, edita los <span class="tag"> de cada fila.
-      -->
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-          <span class="tag">Guiado turístico</span>
+          <span class="tag">Formación en guiado</span>
           <span class="tag">Diseño de itinerarios</span>
           <span class="tag">Información local</span>
           <span class="tag accent">HTML · CSS · JS</span>
@@ -359,7 +333,7 @@
     </section>
 
     <!-- ============================================================
-         06 · TECH & HOBBIES  (NUEVA)
+         06 · TECH & HOBBIES
          ============================================================ -->
     <section class="section" id="tech">
       <div class="wrap">
@@ -369,7 +343,6 @@
           <h2 class="section-title">Bits, luz<br>y hardware.</h2>
         </header>
 
-        <!-- Informe europeo de competencias digitales (DigComp) -->
         <article class="competences card reveal">
           <div class="competences-head">
             <span class="competences-badge">
@@ -379,7 +352,7 @@
             <span class="competences-meta">5 / 5 áreas</span>
           </div>
           <p class="competences-desc">
-            Autoevaluación según el marco europeo de competencias digitales
+            Certificado según el marco europeo de competencias digitales
             (DigComp). Nivel 6 «Advanced» en las cinco áreas del marco.
           </p>
           <ul class="comp-list">
@@ -411,7 +384,6 @@
           </ul>
         </article>
 
-        <!-- Grid: código · hardware · fotografía -->
         <div class="tech-grid">
 
           <article class="tech-card card reveal">
@@ -435,21 +407,32 @@
           </article>
 
           <article class="tech-card card reveal" style="--d:.16s">
-  <div class="tech-card-head">
-    <h3>Digital, IA & creatividad</h3>
-    <span class="glyph-mini" aria-hidden="true">
-      <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
-      <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
-      <i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i>
-    </span>
-  </div>
-  <ul class="tech-list">
-    <li>Edición de vídeo y fotografía</li>
-    <li>Manejo de herramientas de IA</li>
-    <li>Ofimática avanzada (Excel, Docs, PowerPoint)</li>
-    <li>DigComp Nivel 6 (UE) en las 5 áreas</li>
-  </ul>
-</article>
+            <div class="tech-card-head">
+              <h3>Digital, IA & creatividad</h3>
+              <span class="glyph-mini" aria-hidden="true">
+                <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i>
+                <i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
+                <i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i>
+              </span>
+            </div>
+            <ul class="tech-list">
+              <li>Edición de vídeo y fotografía</li>
+              <li>Manejo de herramientas de IA</li>
+              <li>Ofimática avanzada (Excel, Docs, PowerPoint)</li>
+              <li>DigComp Nivel 6 (UE) en las 5 áreas</li>
+            </ul>
+          </article>
+
+          <!-- Terminal decorativa — typewriter al hacer reveal -->
+          <article class="tech-card card terminal-card reveal" style="--d:.24s">
+            <div class="terminal-bar">
+              <span class="term-light term-light-r"></span>
+              <span class="term-light term-light-y"></span>
+              <span class="term-light term-light-g"></span>
+              <span class="term-title">pablo@portfolio ~</span>
+            </div>
+            <pre class="terminal" aria-hidden="true"><span class="term-line"><span class="term-prompt">~$</span> <span class="term-cmd">whoami</span></span><span class="term-line"><span class="term-out">pablo_mascaró</span></span><span class="term-line"><span class="term-prompt">~$</span> <span class="term-cmd">cat skills.txt</span></span><span class="term-line"><span class="term-out">turismo · hospitalidad · tech</span></span><span class="term-line"><span class="term-prompt">~$</span> <span class="term-cursor">█</span></span></pre>
+          </article>
 
         </div>
       </div>
@@ -467,62 +450,172 @@
 
         <div class="langs">
           <div class="lang card reveal">
+            <span class="lang-code" aria-hidden="true">ES</span>
             <div class="lang-top">
               <span class="lang-name">Español</span>
               <span class="lang-level">Nativo</span>
             </div>
-            <div class="lang-bar"><span class="lang-fill" style="--level:100%"></span></div>
             <p class="lang-detail">Lengua materna</p>
           </div>
 
           <div class="lang card reveal" style="--d:.08s">
+            <span class="lang-code" aria-hidden="true">CA</span>
             <div class="lang-top">
               <span class="lang-name">Catalán</span>
               <span class="lang-level">C2</span>
             </div>
-            <div class="lang-bar"><span class="lang-fill" style="--level:96%"></span></div>
-            <p class="lang-detail">C2 global · escritura C1</p>
+            <p class="lang-detail">Global · escritura C1</p>
           </div>
 
           <div class="lang card reveal" style="--d:.16s">
+            <span class="lang-code" aria-hidden="true">EN</span>
             <div class="lang-top">
               <span class="lang-name">Inglés</span>
               <span class="lang-level">C1</span>
             </div>
-            <div class="lang-bar"><span class="lang-fill" style="--level:82%"></span></div>
-            <p class="lang-detail">C1 global · writing B2</p>
+            <p class="lang-detail">Global · writing B2</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         08 · CONTACTO
+         08 · GALERÍA
+         Cambia el src de cada imagen y el texto para contar tus historias.
+         ============================================================ -->
+    <section class="section" id="galeria">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="section-label">// 07 · galería</span>
+          <h2 class="section-title">Un poco de mi mundo.</h2>
+        </header>
+
+        <div class="gallery reveal" aria-label="Galería personal">
+          <div class="gallery-stage">
+            <div class="gallery-track">
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Lago y montañas bajo el cielo del atardecer" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">01 / 10 · MENORCA</span>
+                  <h3 class="gallery-title">Un verano en la isla.</h3>
+                  <p class="gallery-description">Dos temporadas en un hotel de Menorca: sala, recepción y muchas historias que me llevo conmigo.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1439792675105-701e6a4ab6f0?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Paisaje montañoso con niebla y luz suave" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">02 / 10 · HOSTELERÍA</span>
+                  <h3 class="gallery-title">El ritmo de la sala.</h3>
+                  <p class="gallery-description">Atención directa, trabajo en equipo y cuidar los detalles incluso cuando todo va deprisa.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1477346611705-65d1883cee1e?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Montañas oscuras bajo un cielo de tarde" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">03 / 10 · RECEPCIÓN</span>
+                  <h3 class="gallery-title">Que cada llegada cuente.</h3>
+                  <p class="gallery-description">Check-in, información local y una bienvenida atenta para que cada huésped se sienta a gusto.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Camino abierto que atraviesa un paisaje natural" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">04 / 10 · VIAJES</span>
+                  <h3 class="gallery-title">Siempre hay otra ruta.</h3>
+                  <p class="gallery-description">Me atraen los lugares nuevos, sus historias y la gente que los hace únicos.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Cumbres montañosas iluminadas por la luz del día" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">05 / 10 · FORMACIÓN</span>
+                  <h3 class="gallery-title">Aprendiendo turismo.</h3>
+                  <p class="gallery-description">Estudio para conocer mejor los destinos y aprender a compartirlos con otras personas.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Cielo nocturno estrellado sobre un paisaje" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">06 / 10 · CURIOSIDAD</span>
+                  <h3 class="gallery-title">Mirar un poco más allá.</h3>
+                  <p class="gallery-description">Me gusta entender cómo funcionan las cosas y encontrar nuevas formas de hacerlas.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Componentes y piezas de un ordenador" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">07 / 10 · HARDWARE</span>
+                  <h3 class="gallery-title">Montar, probar, aprender.</h3>
+                  <p class="gallery-description">Los ordenadores son uno de esos hobbies en los que siempre aparece algo nuevo que descubrir.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Espacio de trabajo con ordenador y código en pantalla" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">08 / 10 · PROYECTOS</span>
+                  <h3 class="gallery-title">Ideas que toman forma.</h3>
+                  <p class="gallery-description">Este portfolio nació de las ganas de aprender construyendo algo propio.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Personas conversando alrededor de una mesa" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">09 / 10 · IDIOMAS</span>
+                  <h3 class="gallery-title">Entendernos abre puertas.</h3>
+                  <p class="gallery-description">Español, catalán e inglés: tres maneras de conversar, conectar y hacer sentir bienvenido.</p>
+                </div>
+              </article>
+              <article class="gallery-item">
+                <img class="gallery-image" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&amp;w=1600&amp;auto=format&amp;fit=crop" alt="Lago de montaña rodeado de bosques" loading="lazy" />
+                <div class="gallery-content">
+                  <span class="gallery-index">10 / 10 · PRÓXIMA PARADA</span>
+                  <h3 class="gallery-title">Lo mejor está por venir.</h3>
+                  <p class="gallery-description">Un espacio para la próxima experiencia, el próximo destino o la próxima historia.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="gallery-controls">
+              <span class="gallery-counter" aria-live="polite">
+                <span class="gallery-current">01</span>
+                <span aria-hidden="true"> / </span>
+                <span class="gallery-total">10</span>
+              </span>
+              <div class="gallery-buttons">
+                <button class="gallery-control gallery-prev" type="button" aria-label="Imagen anterior">←</button>
+                <button class="gallery-control gallery-next" type="button" aria-label="Imagen siguiente">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         09 · CONTACTO
          ============================================================ -->
     <section class="section contact" id="contacto">
       <div class="wrap">
-        <span class="section-label reveal">// 07 · contacto</span>
+        <span class="section-label contact-label reveal">
+          <span class="contact-led" aria-hidden="true"></span>
+          // 08 · contacto
+        </span>
         <h2 class="contact-title reveal">¿Hablamos<span class="dot-accent">?</span></h2>
         <p class="contact-sub reveal">
           Abierto a prácticas, proyectos y oportunidades en turismo,
           recepción, atención al cliente y entornos digitales.
         </p>
 
-        <!-- EDITA AQUÍ: tu email de contacto -->
-        <a class="contact-mail reveal" href="mailto:hola@tudominio.com">
-          hola@tudominio.com
+        <a class="contact-mail reveal" href="mailto:cora.mojz@gmail.com">
+          cora.mojz@gmail.com
         </a>
 
-        <!-- EDITA AQUÍ: tus enlaces (borra los que no uses) -->
         <div class="contact-links reveal">
           <a class="glass-btn" href="https://github.com/coramj" target="_blank" rel="noopener">
             GitHub <span class="arrow">↗</span>
           </a>
           <a class="glass-btn" href="#" target="_blank" rel="noopener">
             LinkedIn <span class="arrow">↗</span>
-          </a>
-          <a class="glass-btn" href="cv.pdf" target="_blank" rel="noopener">
-            CV en PDF <span class="arrow">↗</span>
           </a>
         </div>
       </div>

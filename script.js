@@ -1,20 +1,13 @@
 /* ============================================================
    PORTFOLIO — Pablo Mascaró Jiménez
-   script.js · Interacciones
+   script.js · Interacciones (v4)
    ------------------------------------------------------------
-   1. Reloj local
-   2. Reveal al hacer scroll
-   3. Nav: fondo al scrollear + link activo
-   4. Menú móvil
-   5. Barra de progreso de scroll
-   6. Cursor personalizado
-   7. Parallax suave del fondo
-   8. Año del footer
+   · HUD eliminado (no funcionaba)
+   · Split-flap aeroportuario en el navbar
    ============================================================ */
 
 'use strict';
 
-/* ---------- Utilidades ---------- */
 const $  = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
@@ -45,19 +38,17 @@ if (clockEl) {
 
 /* ============================================================
    2. REVEAL AL HACER SCROLL
-   Añade la clase .in-view cuando el elemento entra en pantalla.
    ============================================================ */
 const revealEls = $$('.reveal');
 
 if (prefersReduced) {
-  // Sin animaciones: todo visible desde el principio
   revealEls.forEach(el => el.classList.add('in-view'));
 } else {
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('in-view');
-      revealIO.unobserve(entry.target); // solo una vez
+      revealIO.unobserve(entry.target);
     });
   }, {
     threshold: 0.12,
@@ -68,11 +59,16 @@ if (prefersReduced) {
 }
 
 /* ============================================================
-   3. NAV — fondo al scrollear + link activo
+   3. NAV — fondo al scrollear + link activo + split-flap
    ============================================================ */
 const nav = $('#nav');
 
 if (nav) {
+  if (!prefersReduced && window.matchMedia('(min-width: 761px)').matches) {
+    nav.classList.add('intro-open');
+    window.setTimeout(() => nav.classList.remove('intro-open'), 3200);
+  }
+
   const onScroll = () => {
     nav.classList.toggle('scrolled', window.scrollY > 16);
   };
@@ -80,7 +76,61 @@ if (nav) {
   window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-// Link activo según la sección visible
+/* ---------- Split-flap: mapeo sección → número ---------- */
+const sectionNumbers = {
+  'top': '00',
+  'sobre-mi': '01',
+  'experiencia': '02',
+  'formacion': '03',
+  'skills': '04',
+  'tech': '05',
+  'idiomas': '06',
+  'galeria': '07',
+  'contacto': '08'
+};
+
+const flapDigits = $$('.flap-digit');
+let currentFlapValue = '00';
+
+function updateFlap(newValue) {
+  if (!flapDigits.length) return;
+  if (newValue === currentFlapValue) return;
+  currentFlapValue = newValue;
+
+  const chars = newValue.split('');
+  flapDigits.forEach((digit, i) => {
+    const newChar = chars[i] ?? '0';
+    if (digit.textContent === newChar) return;
+
+    digit.classList.add('flipping');
+    // Cambio de texto justo cuando la tarjeta está plana (mitad de la animación)
+    setTimeout(() => {
+      digit.textContent = newChar;
+    }, 225);
+    setTimeout(() => digit.classList.remove('flipping'), 460);
+  });
+}
+
+// Inicialización
+if (flapDigits.length) {
+  const chars = '00'.split('');
+  flapDigits.forEach((d, i) => { d.textContent = chars[i]; });
+}
+
+/* ---------- Easter egg: click en el flap lo hace "recalibrar" ---------- */
+const navFlap = $('#navFlap');
+if (navFlap) {
+  navFlap.addEventListener('click', () => {
+    flapDigits.forEach((d, i) => {
+      setTimeout(() => {
+        d.classList.add('flipping');
+        setTimeout(() => d.classList.remove('flipping'), 460);
+      }, i * 90);
+    });
+  });
+}
+
+/* ---------- Link activo + actualización del flap ---------- */
 const sections = $$('main section[id]');
 const navLinks = $$('.nav-links a');
 
@@ -93,6 +143,10 @@ if (sections.length && navLinks.length) {
       navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
       });
+
+      if (sectionNumbers[id]) {
+        updateFlap(sectionNumbers[id]);
+      }
     });
   }, {
     rootMargin: '-40% 0px -55% 0px'
@@ -110,6 +164,7 @@ const navLinksBox = $('#navLinks');
 if (navToggle && navLinksBox) {
   const setMenu = (open) => {
     navLinksBox.classList.toggle('open', open);
+    nav?.classList.toggle('open', open);
     navToggle.classList.toggle('open', open);
     navToggle.setAttribute('aria-expanded', String(open));
     navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
@@ -120,12 +175,10 @@ if (navToggle && navLinksBox) {
     setMenu(!navLinksBox.classList.contains('open'));
   });
 
-  // Cierra el menú al pulsar un enlace
   navLinksBox.addEventListener('click', (e) => {
     if (e.target.closest('a')) setMenu(false);
   });
 
-  // Cierra con Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenu(false);
   });
@@ -151,7 +204,6 @@ if (progressEl) {
 
 /* ============================================================
    6. CURSOR PERSONALIZADO
-   Solo en dispositivos con ratón y sin reduced motion.
    ============================================================ */
 if (finePointer && !prefersReduced) {
   const dot  = $('.cursor-dot');
@@ -169,12 +221,10 @@ if (finePointer && !prefersReduced) {
       document.body.classList.add('cursor-active');
     });
 
-    // Ocultar al salir de la ventana
     document.addEventListener('mouseleave', () => {
       document.body.classList.remove('cursor-active');
     });
 
-    // Interpolación: el punto sigue rápido, el anillo con más lag
     const animateCursor = () => {
       dotX  += (mouseX - dotX)  * 0.35;
       dotY  += (mouseY - dotY)  * 0.35;
@@ -191,7 +241,6 @@ if (finePointer && !prefersReduced) {
 
     animateCursor();
 
-    // Crece al pasar sobre elementos interactivos
     $$('a, button').forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -201,7 +250,6 @@ if (finePointer && !prefersReduced) {
 
 /* ============================================================
    7. PARALLAX SUAVE DEL FONDO
-   Los blobs se desplazan ligeramente con el ratón.
    ============================================================ */
 const blobsEl = $('.blobs');
 
@@ -225,10 +273,8 @@ if (blobsEl && finePointer && !prefersReduced) {
 }
 
 /* ============================================================
-   9. MARQUEE — JS-driven, acelera con el scroll
+   8. MARQUEE — JS-driven, acelera con el scroll
    ============================================================ */
-
-// Velocidad de scroll (decae con el tiempo)
 let scrollVelocity = 0;
 let lastY = window.scrollY;
 let velocityDecayTimer = null;
@@ -238,10 +284,8 @@ window.addEventListener('scroll', () => {
   scrollVelocity = y - lastY;
   lastY = y;
 
-  // "Modo rápido": activa la saturación del fondo
   document.body.classList.toggle('fast-scroll', Math.abs(scrollVelocity) > 45);
 
-  // Decae el velocity al parar
   clearTimeout(velocityDecayTimer);
   velocityDecayTimer = setTimeout(() => { scrollVelocity = 0; }, 120);
 }, { passive: true });
@@ -252,7 +296,6 @@ class Marquee {
     this.track = el.querySelector('.marquee-track');
     if (!this.track) return;
 
-    // Duplicamos el contenido para que el loop sea invisible
     [...this.track.children].forEach((c) => this.track.appendChild(c.cloneNode(true)));
 
     this.baseSpeed = baseSpeed;
@@ -302,21 +345,7 @@ function tickMarquees() {
 if (marquees.length) tickMarquees();
 
 /* ============================================================
-   10. HUD scroll (glyph de puntos)
-   ============================================================ */
-const hudGlyph = document.getElementById('hudGlyph');
-const hudPct   = document.getElementById('hudPct');
-
-if (hudGlyph) {
-  for (let i = 0; i < 40; i++) {
-    const d = document.createElement('i');
-    d.className = 'hud-dot';
-    hudGlyph.appendChild(d);
-  }
-}
-
-/* ============================================================
-   11. DOT-TOY del hero (matriz reactiva al cursor)
+   9. DOT-TOY del hero
    ============================================================ */
 const dotToy = document.getElementById('dotToy');
 const heroEl = document.querySelector('.hero');
@@ -357,7 +386,7 @@ if (dotToy && heroEl && finePointer && !prefersReduced) {
 }
 
 /* ============================================================
-   12. SPLIT: títulos de sección palabra por palabra
+   10. SPLIT: títulos de sección palabra por palabra
    ============================================================ */
 $$('.section-title').forEach((el) => {
   const original = [...el.childNodes];
@@ -366,7 +395,6 @@ $$('.section-title').forEach((el) => {
 
   original.forEach((node) => {
     if (node.nodeType === 3) {
-      // Texto: partimos por palabras, conservamos espacios
       const parts = node.textContent.split(/(\s+)/);
       parts.forEach((part) => {
         if (!part) return;
@@ -384,20 +412,13 @@ $$('.section-title').forEach((el) => {
         el.appendChild(wrap);
       });
     } else {
-      // Conserva <br> y otros elementos tal cual
       el.appendChild(node);
     }
   });
 });
 
-// Títulos que no viven bajo .section-head (contacto)
-const contactTitle = document.querySelector('.contact-title');
-if (contactTitle) {
-  // El reveal ya lo gestiona, no necesita split
-}
-
 /* ============================================================
-   13. SPLIT: letras del hero con hover juguetón
+   11. SPLIT: letras del hero con hover juguetón
    ============================================================ */
 $$('.hero-title .line').forEach((line) => {
   const nodes = [...line.childNodes];
@@ -415,37 +436,13 @@ $$('.hero-title .line').forEach((line) => {
         line.appendChild(s);
       });
     } else {
-      line.appendChild(node); // preserva .dot-accent
+      line.appendChild(node);
     }
   });
 });
 
 /* ============================================================
-   14. TILT 3D en .card
-   ============================================================ */
-if (finePointer && !prefersReduced) {
-  $$('.card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transition = 'transform 0.08s ease-out, box-shadow 0.3s';
-      card.style.transform =
-        `perspective(1000px) rotateX(${(-y * 3.2).toFixed(2)}deg) ` +
-        `rotateY(${(x * 3.2).toFixed(2)}deg) translateY(-3px)`;
-      card.style.boxShadow = '0 18px 40px -22px rgba(0,0,0,0.6)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.45s var(--ease), box-shadow 0.45s';
-      card.style.transform = '';
-      card.style.boxShadow = '';
-    });
-  });
-}
-
-/* ============================================================
-   15. BOTONES MAGNÉTICOS
+   12. BOTONES MAGNÉTICOS
    ============================================================ */
 if (finePointer && !prefersReduced) {
   $$('.glass-btn, .contact-mail, .back-top').forEach((el) => {
@@ -463,11 +460,50 @@ if (finePointer && !prefersReduced) {
   });
 }
 
-// Activamos la animación solo cuando el DOM está listo
-$$('.marquee').forEach(m => m.classList.add('marquee-ready'));
+/* ============================================================
+   13. GALERÍA
+   ============================================================ */
+const gallery = $('.gallery');
+
+if (gallery) {
+  const track = $('.gallery-track', gallery);
+  const previousButton = $('.gallery-prev', gallery);
+  const nextButton = $('.gallery-next', gallery);
+  const currentLabel = $('.gallery-current', gallery);
+  const totalLabel = $('.gallery-total', gallery);
+
+  if (track && previousButton && nextButton && currentLabel && totalLabel) {
+    let currentIndex = 0;
+
+    const updateGallery = () => {
+      currentLabel.textContent = String(currentIndex + 1).padStart(2, '0');
+      [...track.children].forEach((item, index) => {
+        item.setAttribute('aria-hidden', String(index !== 1));
+      });
+    };
+
+    totalLabel.textContent = String(track.children.length).padStart(2, '0');
+    if (track.children.length > 1) {
+      track.prepend(track.lastElementChild);
+    }
+    updateGallery();
+
+    nextButton.addEventListener('click', () => {
+      track.append(track.firstElementChild);
+      currentIndex = (currentIndex + 1) % track.children.length;
+      updateGallery();
+    });
+
+    previousButton.addEventListener('click', () => {
+      track.prepend(track.lastElementChild);
+      currentIndex = (currentIndex - 1 + track.children.length) % track.children.length;
+      updateGallery();
+    });
+  }
+}
 
 /* ============================================================
-   8. AÑO DEL FOOTER
+   14. AÑO DEL FOOTER
    ============================================================ */
 const yearEl = $('#year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
