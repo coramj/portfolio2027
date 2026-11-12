@@ -210,6 +210,10 @@ body.cursor-hover .cursor-ring { width: 54px; height: 54px; }
 body.cursor-hover .cursor-dot { opacity: 0; }
 
 /* ---------- 04. Navegación ---------- */
+.nav-slot {
+  min-height: calc(var(--nav-h) + 1px);
+}
+
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -1323,29 +1327,16 @@ body.fast-scroll .blob  { opacity: 0.75; }
   margin-left: auto;
 }
 
-/* ---------- Logo con glitch al hover ---------- */
+/* ---------- Logo ---------- */
 .logo-text {
   display: inline-block;
-  transition: text-shadow 0.2s;
-}
-
-@media (hover: hover) {
-  .logo:hover .logo-text {
-    animation: glitchLogo 0.5s steps(3) infinite;
-  }
-}
-
-@keyframes glitchLogo {
-  0%   { text-shadow:  2px 0 var(--accent); }
-  33%  { text-shadow: -2px 0 var(--accent-2); }
-  66%  { text-shadow:  2px 0 var(--accent); }
-  100% { text-shadow: -1px 0 var(--accent-2); }
+  transition: color 0.2s ease;
 }
 
 /* ---------- SPLIT-FLAP del navbar ---------- */
 .nav-flap {
   display: flex;
-  gap: 3px;
+  gap: 2px;
   padding: 3px;
   perspective: 150px;
   background: rgba(0, 0, 0, 0.45);
@@ -2510,5 +2501,2020 @@ body.fast-scroll .blob  { opacity: 0.75; }
   .nav.open .nav-links,
   .nav.intro-open .nav-links {
     display: flex;
+  }
+}
+
+/* ---------- Navegación: índice superior que pasa a pill vertical ---------- */
+@media (min-width: 761px) {
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) {
+    width: min(1100px, calc(100vw - 32px));
+  }
+
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-inner {
+    width: 100%;
+    height: 56px;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 7px 16px;
+  }
+
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .logo {
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+  }
+
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker {
+    width: auto;
+    justify-content: center;
+  }
+
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: clamp(7px, 1.15vw, 16px);
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    border: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a {
+    width: auto;
+    height: auto;
+    padding: 6px 0;
+    border: 0;
+    border-radius: 0;
+    font-size: clamp(9px, 0.8vw, 11px);
+  }
+
+  .nav {
+    top: 14px;
+    right: auto;
+    left: 50%;
+    width: min(1100px, calc(100vw - 32px));
+    max-height: none;
+    overflow: visible;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(11, 11, 14, 0.84);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+            backdrop-filter: blur(20px) saturate(140%);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+    transform: translateX(-50%);
+    transition:
+      top 0.45s var(--ease),
+      left 0.45s var(--ease),
+      transform 0.45s var(--ease),
+      border-radius 0.2s ease,
+      background 0.3s ease;
+  }
+
+  .nav-inner {
+    width: 100%;
+    height: 56px;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 7px 16px;
+  }
+
+  .logo {
+    flex: none;
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+  }
+
+  .nav-marker {
+    flex: none;
+    justify-content: center;
+  }
+
+  .nav-marker-label,
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    display: flex;
+    min-width: 0;
+    width: auto;
+    flex: 1;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: clamp(7px, 1.15vw, 16px);
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    border: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    flex: none;
+    padding: 6px 0;
+    font-size: clamp(9px, 0.8vw, 11px);
+  }
+
+  .nav.scrolled {
+    top: 50%;
+    left: 16px;
+    width: 58px;
+    max-height: calc(100svh - 32px);
+    overflow-y: auto;
+    border-color: var(--glass-border-hover);
+    border-radius: 999px;
+    background: rgba(11, 11, 14, 0.88);
+    transform: translateY(-50%);
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) {
+    overflow: hidden;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-inner {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 6px;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .logo,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-toggle {
+    display: none;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links {
+    display: flex;
+    width: auto;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    overflow: visible;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 0;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a::before {
+    font-size: 11px;
+    color: var(--text-dim);
+    opacity: 1;
+    transition: color 0.2s ease;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a::after {
+    display: none;
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a.active {
+    background: rgba(255, 95, 82, 0.14);
+  }
+
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a.active::before {
+    color: var(--accent-soft);
+  }
+
+  .nav.scrolled:hover,
+  .nav.scrolled:focus-within {
+    z-index: 1000;
+    width: 190px;
+    border-radius: 22px;
+  }
+
+  .nav.scrolled:hover .nav-inner,
+  .nav.scrolled:focus-within .nav-inner {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 16px 14px;
+  }
+
+  .nav.scrolled:hover .logo,
+  .nav.scrolled:focus-within .logo {
+    display: block;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--glass-border);
+    font-size: 1.15rem;
+  }
+
+  .nav.scrolled:hover .nav-marker,
+  .nav.scrolled:focus-within .nav-marker {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav.scrolled:hover .nav-marker-label,
+  .nav.scrolled:focus-within .nav-marker-label {
+    display: inline;
+  }
+
+  .nav.scrolled:hover .nav-links,
+  .nav.scrolled:focus-within .nav-links {
+    width: 100%;
+    flex: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    overflow: visible;
+  }
+
+  .nav.scrolled:hover .nav-links a,
+  .nav.scrolled:focus-within .nav-links a {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    padding: 7px 0;
+    border-radius: 0;
+    font-size: 11px;
+  }
+
+  .nav.scrolled:hover .nav-links a::before,
+  .nav.scrolled:focus-within .nav-links a::before {
+    font-size: 9px;
+  }
+
+  .nav.scrolled:hover .nav-links a::after,
+  .nav.scrolled:focus-within .nav-links a::after {
+    display: block;
+    bottom: 3px;
+  }
+}
+
+/* ---------- Navegación lateral fija, sin colapsar ni expandirse ---------- */
+@media (min-width: 761px) {
+  .nav,
+  .nav.scrolled,
+  .nav:hover,
+  .nav:focus-within,
+  .nav.open,
+  .nav.intro-open,
+  .nav.scrolled:hover,
+  .nav.scrolled:focus-within,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open),
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) {
+    top: 50%;
+    right: auto;
+    left: 12px;
+    width: 184px;
+    max-height: calc(100svh - 32px);
+    overflow: auto;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px 18px;
+    background: rgba(11, 11, 14, 0.88);
+    transform: translateY(-50%);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .nav-inner,
+  .nav:hover .nav-inner,
+  .nav:focus-within .nav-inner,
+  .nav.open .nav-inner,
+  .nav.intro-open .nav-inner,
+  .nav.scrolled:hover .nav-inner,
+  .nav.scrolled:focus-within .nav-inner,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-inner,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-inner {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 18px 14px;
+    margin: 0;
+  }
+
+  .nav .logo,
+  .nav:hover .logo,
+  .nav:focus-within .logo,
+  .nav.scrolled:hover .logo,
+  .nav.scrolled:focus-within .logo,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .logo,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .logo {
+    display: block;
+    padding: 0 0 13px;
+    border-bottom: 1px dashed var(--glass-border);
+    font-size: 1.25rem;
+  }
+
+  .nav .nav-marker,
+  .nav:hover .nav-marker,
+  .nav:focus-within .nav-marker,
+  .nav.scrolled:hover .nav-marker,
+  .nav.scrolled:focus-within .nav-marker,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+  }
+
+  .nav .nav-marker-label,
+  .nav:hover .nav-marker-label,
+  .nav:focus-within .nav-marker-label,
+  .nav.scrolled:hover .nav-marker-label,
+  .nav.scrolled:focus-within .nav-marker-label,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker-label,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-marker-label {
+    display: inline;
+  }
+
+  .nav .nav-links,
+  .nav:hover .nav-links,
+  .nav:focus-within .nav-links,
+  .nav.open .nav-links,
+  .nav.intro-open .nav-links,
+  .nav.scrolled:hover .nav-links,
+  .nav.scrolled:focus-within .nav-links,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    flex: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  .nav .nav-links a,
+  .nav:hover .nav-links a,
+  .nav:focus-within .nav-links a,
+  .nav.open .nav-links a,
+  .nav.scrolled:hover .nav-links a,
+  .nav.scrolled:focus-within .nav-links a,
+  .nav:not(.scrolled):not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    padding: 7px 0;
+    border-radius: 0;
+    font-size: 11px;
+  }
+
+  .nav .nav-links a::before,
+  .nav:hover .nav-links a::before,
+  .nav:focus-within .nav-links a::before,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a::before {
+    font-size: 9px;
+  }
+
+  .nav .nav-links a::after,
+  .nav:hover .nav-links a::after,
+  .nav:focus-within .nav-links a::after,
+  .nav.scrolled:not(:hover):not(:focus-within):not(.open):not(.intro-open) .nav-links a::after {
+    display: block;
+    bottom: 3px;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 761px) {
+  #nav,
+  #nav.scrolled {
+    top: 50%;
+    right: auto;
+    left: 12px;
+    width: 58px;
+    max-height: calc(100svh - 32px);
+    overflow: hidden auto;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(11, 11, 14, 0.88);
+    transform: translateY(-50%);
+    transition: none;
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-inner {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 8px 6px;
+  }
+
+  #nav:not(:hover):not(:focus-within) .logo,
+  #nav:not(:hover):not(:focus-within) .nav-marker {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(4px);
+    transition:
+      opacity 0.24s ease,
+      transform 0.34s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links a {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    font-size: 0;
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links a::before {
+    font-size: 11px;
+    color: var(--text-dim);
+    opacity: 1;
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links a::after {
+    display: none;
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links a.active {
+    background: rgba(255, 95, 82, 0.14);
+  }
+
+  #nav:not(:hover):not(:focus-within) .nav-links a.active::before {
+    color: var(--accent-soft);
+  }
+
+  #nav:hover,
+  #nav:focus-within,
+  #nav.scrolled:hover,
+  #nav.scrolled:focus-within {
+    z-index: 1000;
+    width: 184px;
+    border-radius: 4px 18px;
+  }
+
+  #nav:hover .nav-inner,
+  #nav:focus-within .nav-inner,
+  #nav.scrolled:hover .nav-inner,
+  #nav.scrolled:focus-within .nav-inner {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin: 0;
+    padding: 18px 14px;
+  }
+
+  #nav:hover .logo,
+  #nav:focus-within .logo,
+  #nav.scrolled:hover .logo,
+  #nav.scrolled:focus-within .logo {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: 0.08s;
+    display: block;
+    padding: 0 0 13px;
+    border-bottom: 1px dashed var(--glass-border);
+    font-size: 1.25rem;
+  }
+
+  #nav:hover .nav-marker,
+  #nav:focus-within .nav-marker,
+  #nav.scrolled:hover .nav-marker,
+  #nav.scrolled:focus-within .nav-marker {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition-delay: 0.08s;
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+  }
+
+  #nav:hover .nav-marker-label,
+  #nav:focus-within .nav-marker-label,
+  #nav.scrolled:hover .nav-marker-label,
+  #nav.scrolled:focus-within .nav-marker-label {
+    display: inline;
+  }
+
+  #nav:hover .nav-links,
+  #nav:focus-within .nav-links,
+  #nav.scrolled:hover .nav-links,
+  #nav.scrolled:focus-within .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    flex: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  #nav:hover .nav-links a,
+  #nav:focus-within .nav-links a,
+  #nav.scrolled:hover .nav-links a,
+  #nav.scrolled:focus-within .nav-links a {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    padding: 7px 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 11px;
+  }
+
+  #nav:hover .nav-links a::before,
+  #nav:focus-within .nav-links a::before,
+  #nav.scrolled:hover .nav-links a::before,
+  #nav.scrolled:focus-within .nav-links a::before {
+    font-size: 9px;
+  }
+
+  #nav:hover .nav-links a::after,
+  #nav:focus-within .nav-links a::after,
+  #nav.scrolled:hover .nav-links a::after,
+  #nav.scrolled:focus-within .nav-links a::after {
+    display: block;
+    bottom: 3px;
+  }
+}
+
+/* ---------- Navegación simple: aparece arriba y acompaña el documento ---------- */
+#nav,
+#nav.scrolled {
+  position: relative;
+  inset: auto;
+  z-index: 100;
+  width: 100%;
+  max-height: none;
+  overflow: visible;
+  border: 0;
+  border-bottom: 1px solid var(--glass-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+  transform: none;
+  transition: none;
+}
+
+#nav .nav-inner {
+  display: flex;
+  width: min(1200px, 94vw);
+  height: var(--nav-h);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+#nav .logo {
+  display: block;
+  flex: none;
+  padding: 0;
+  border: 0;
+  font-size: 1.05rem;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+#nav .nav-marker {
+  display: none;
+}
+
+#nav .nav-links {
+  position: static;
+  display: flex;
+  width: auto;
+  flex: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 2vw, 26px);
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: none;
+  animation: none;
+}
+
+#nav .nav-links a {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  padding: 6px 0;
+  border: 0;
+  border-radius: 0;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+#nav .nav-links a::before {
+  display: none;
+}
+
+#nav .nav-links a::after {
+  display: block;
+}
+
+#nav .nav-toggle {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  #nav .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  #nav .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 3vw;
+    display: flex;
+    width: min(280px, 94vw);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px 18px;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px 14px;
+    background: rgba(11, 11, 14, 0.96);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  #nav .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  #nav .nav-links a {
+    width: 100%;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 13px;
+  }
+
+  #nav .nav-links a:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  #nav .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: calc(var(--nav-h) + 32px) 12vw 32px;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.92);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+  }
+
+  #nav .nav-links a {
+    width: min(420px, 100%);
+    padding: 12px 0;
+    border: 0;
+    font-size: 1.35rem;
+  }
+
+  #nav .nav-links a::after {
+    bottom: -6px;
+  }
+}
+
+/* Final override: keep navigation in normal document flow. */
+#nav,
+#nav.scrolled,
+#nav:hover,
+#nav:focus-within,
+#nav.open {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  border: 0;
+  border-bottom: 1px solid var(--glass-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
+  transform: none;
+  transition: none;
+}
+
+#nav .nav-inner,
+#nav:hover .nav-inner,
+#nav:focus-within .nav-inner,
+#nav.open .nav-inner {
+  display: flex;
+  width: min(1200px, 94vw);
+  height: var(--nav-h);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+#nav .logo,
+#nav:hover .logo,
+#nav:focus-within .logo,
+#nav:not(:hover):not(:focus-within) .logo {
+  position: relative;
+  display: block;
+  flex: none;
+  padding: 0;
+  border: 0;
+  font-size: 1.05rem;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: none;
+}
+
+#nav .nav-marker {
+  display: none;
+}
+
+#nav .nav-links,
+#nav:hover .nav-links,
+#nav:focus-within .nav-links,
+#nav:not(:hover):not(:focus-within) .nav-links {
+  position: static;
+  display: flex;
+  width: auto;
+  flex: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 2vw, 26px);
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition: none;
+  animation: none;
+}
+
+#nav .nav-links a,
+#nav:hover .nav-links a,
+#nav:focus-within .nav-links a,
+#nav:not(:hover):not(:focus-within) .nav-links a {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  padding: 6px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+#nav .nav-links a::before {
+  display: none;
+}
+
+#nav .nav-toggle {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  #nav .nav-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
+  #nav .nav-links,
+  #nav:hover .nav-links,
+  #nav:focus-within .nav-links,
+  #nav:not(:hover):not(:focus-within) .nav-links {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 3vw;
+    display: flex;
+    width: min(280px, 94vw);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 12px 18px;
+    border: 1px solid var(--glass-border);
+    border-radius: 4px 14px;
+    background: rgba(11, 11, 14, 0.96);
+    -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  #nav .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  #nav .nav-links a {
+    width: 100%;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--glass-border);
+    font-size: 13px;
+  }
+
+  #nav .nav-links a:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  #nav .nav-links,
+  #nav:hover .nav-links,
+  #nav:focus-within .nav-links,
+  #nav:not(:hover):not(:focus-within) .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: calc(var(--nav-h) + 32px) 12vw 32px;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.92);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+  }
+
+  #nav .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #nav .nav-links a {
+    width: min(420px, 100%);
+    padding: 12px 0;
+    border: 0;
+    font-size: 1.35rem;
+  }
+}
+
+@media (min-width: 761px) {
+  #nav,
+  #nav.scrolled {
+    height: min(374px, calc(100svh - 32px));
+    overflow: hidden;
+    transition:
+      width 0.52s cubic-bezier(0.22, 0.61, 0.36, 1),
+      border-radius 0.38s ease,
+      background-color 0.38s ease;
+  }
+
+  #nav .nav-inner,
+  #nav:hover .nav-inner,
+  #nav:focus-within .nav-inner,
+  #nav.scrolled:hover .nav-inner,
+  #nav.scrolled:focus-within .nav-inner {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-items: start;
+    align-content: start;
+    justify-content: start;
+    gap: 8px 10px;
+    margin: 0;
+    padding: 12px 14px;
+  }
+
+  #nav .logo,
+  #nav:hover .logo,
+  #nav:focus-within .logo,
+  #nav.scrolled:hover .logo,
+  #nav.scrolled:focus-within .logo {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    padding: 0;
+    border: 0;
+    font-size: 1.15rem;
+  }
+
+  #nav .nav-marker,
+  #nav:hover .nav-marker,
+  #nav:focus-within .nav-marker,
+  #nav.scrolled:hover .nav-marker,
+  #nav.scrolled:focus-within .nav-marker {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    align-items: center;
+    justify-content: flex-start;
+    width: max-content;
+  }
+
+  #nav .nav-marker-label,
+  #nav:hover .nav-marker-label,
+  #nav:focus-within .nav-marker-label,
+  #nav.scrolled:hover .nav-marker-label,
+  #nav.scrolled:focus-within .nav-marker-label {
+    display: none;
+  }
+
+  #nav .nav-links,
+  #nav:hover .nav-links,
+  #nav:focus-within .nav-links,
+  #nav.scrolled:hover .nav-links,
+  #nav.scrolled:focus-within .nav-links {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    margin: 0;
+    padding: 0;
+  }
+
+  #nav .nav-links a,
+  #nav:hover .nav-links a,
+  #nav:focus-within .nav-links a,
+  #nav.scrolled:hover .nav-links a,
+  #nav.scrolled:focus-within .nav-links a {
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 35px;
+    flex: none;
+    overflow: hidden;
+    padding: 7px 0 7px 28px;
+    border-radius: 999px;
+    color: transparent;
+    font-size: 11px;
+    line-height: 20px;
+    white-space: nowrap;
+    transition:
+      width 0.52s cubic-bezier(0.22, 0.61, 0.36, 1),
+      color 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  #nav .nav-links a::before,
+  #nav:hover .nav-links a::before,
+  #nav:focus-within .nav-links a::before,
+  #nav.scrolled:hover .nav-links a::before,
+  #nav.scrolled:focus-within .nav-links a::before {
+    position: absolute;
+    top: 50%;
+    left: 13px;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    color: var(--text-dim);
+    opacity: 1;
+    transition:
+      left 0.52s cubic-bezier(0.22, 0.61, 0.36, 1),
+      transform 0.52s cubic-bezier(0.22, 0.61, 0.36, 1),
+      color 0.3s ease;
+  }
+
+  #nav .nav-links a::after,
+  #nav:hover .nav-links a::after,
+  #nav:focus-within .nav-links a::after,
+  #nav.scrolled:hover .nav-links a::after,
+  #nav.scrolled:focus-within .nav-links a::after {
+    display: none;
+  }
+
+  #nav .nav-links a.active,
+  #nav:hover .nav-links a.active,
+  #nav:focus-within .nav-links a.active,
+  #nav.scrolled:hover .nav-links a.active,
+  #nav.scrolled:focus-within .nav-links a.active {
+    background: rgba(255, 95, 82, 0.14);
+  }
+
+  #nav .nav-links a.active::before,
+  #nav:hover .nav-links a.active::before,
+  #nav:focus-within .nav-links a.active::before,
+  #nav.scrolled:hover .nav-links a.active::before,
+  #nav.scrolled:focus-within .nav-links a.active::before {
+    color: var(--accent-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #nav,
+    #nav .logo,
+    #nav .nav-marker,
+    #nav .nav-links a,
+    #nav .nav-links a::before {
+      transition: none;
+    }
+  }
+
+  #nav:hover,
+  #nav:focus-within,
+  #nav.scrolled:hover,
+  #nav.scrolled:focus-within {
+    width: 184px;
+    border-radius: 4px 18px;
+  }
+
+  #nav:hover .nav-links a,
+  #nav:focus-within .nav-links a,
+  #nav.scrolled:hover .nav-links a,
+  #nav.scrolled:focus-within .nav-links a {
+    width: 100%;
+    color: var(--text-dim);
+    border-radius: 0;
+  }
+
+  #nav:hover .nav-links a::before,
+  #nav:focus-within .nav-links a::before,
+  #nav.scrolled:hover .nav-links a::before,
+  #nav.scrolled:focus-within .nav-links a::before {
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  #nav:hover .nav-links a:hover,
+  #nav:focus-within .nav-links a:hover,
+  #nav:hover .nav-links a.active,
+  #nav:focus-within .nav-links a.active,
+  #nav.scrolled:hover .nav-links a:hover,
+  #nav.scrolled:focus-within .nav-links a:hover,
+  #nav.scrolled:hover .nav-links a.active,
+  #nav.scrolled:focus-within .nav-links a.active {
+    color: var(--text);
+  }
+}
+
+@media (min-width: 761px) {
+  #nav,
+  #nav.scrolled,
+  #nav:hover,
+  #nav:focus-within,
+  #nav.open {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+    border: 0;
+    border-bottom: 1px solid var(--glass-border);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+    transform: none;
+    transition: none;
+  }
+
+  #nav .nav-inner,
+  #nav:hover .nav-inner,
+  #nav:focus-within .nav-inner,
+  #nav.open .nav-inner,
+  #nav:not(:hover):not(:focus-within) .nav-inner {
+    display: flex;
+    width: min(1200px, 94vw);
+    height: var(--nav-h);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  #nav .logo,
+  #nav:hover .logo,
+  #nav:focus-within .logo,
+  #nav:not(:hover):not(:focus-within) .logo {
+    position: relative;
+    display: block;
+    flex: none;
+    padding: 0;
+    border: 0;
+    font-size: 1.05rem;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+  }
+
+  #nav .nav-marker {
+    display: none;
+  }
+
+  #nav .nav-links,
+  #nav:hover .nav-links,
+  #nav:focus-within .nav-links,
+  #nav:not(:hover):not(:focus-within) .nav-links {
+    position: static;
+    display: flex;
+    width: auto;
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(12px, 2vw, 26px);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+
+  #nav .nav-links a,
+  #nav:hover .nav-links a,
+  #nav:focus-within .nav-links a,
+  #nav:not(:hover):not(:focus-within) .nav-links a {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    padding: 6px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  #nav .nav-links a::before {
+    display: none;
+  }
+
+  #nav .nav-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  #nav .nav-links:not(.open) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  #nav .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+/* ---------- Burbuja de navegación al desplazarse ---------- */
+@media (min-width: 761px) {
+  #nav.scrolled {
+    position: fixed;
+    inset: 18px 22px auto auto;
+    z-index: 1200;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    max-height: calc(100svh - 36px);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(18, 18, 22, 0.9);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+            backdrop-filter: blur(18px) saturate(140%);
+    transform: translateY(-14px);
+    animation: nav-bubble-drop 0.48s var(--ease) forwards;
+    transition: width 0.32s var(--ease), height 0.32s var(--ease), border-radius 0.24s ease, background 0.24s ease;
+  }
+
+  #nav.scrolled .nav-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0;
+    padding: 5px 8px 5px 14px;
+  }
+
+  #nav.scrolled .logo {
+    display: block;
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+  }
+
+  #nav.scrolled .nav-toggle {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    margin: 0;
+  }
+
+  #nav.scrolled .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    height: 100svh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.8vh, 18px);
+    margin: 0;
+    padding: 90px 24px 40px;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.24s ease, transform 0.3s var(--ease), visibility 0.24s;
+  }
+
+  #nav.scrolled .nav-links a {
+    width: auto;
+    padding: 7px 8px;
+    border: 0;
+    font-size: clamp(1.35rem, 3vw, 2.25rem);
+  }
+
+  #nav.scrolled.open {
+    inset: 0;
+    width: 100%;
+    height: 100svh;
+    max-height: 100svh;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+    animation: none;
+  }
+
+  #nav.scrolled.open .nav-inner {
+    width: min(1200px, 94vw);
+    height: 68px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  #nav.scrolled.open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 760px) {
+  #nav.scrolled {
+    position: fixed;
+    inset: 12px 14px auto auto;
+    z-index: 1200;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(18, 18, 22, 0.92);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+            backdrop-filter: blur(18px) saturate(140%);
+    transform: translateY(-12px);
+    animation: nav-bubble-drop 0.48s var(--ease) forwards;
+  }
+
+  #nav.scrolled .nav-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 52px;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 8px 5px 14px;
+  }
+
+  #nav.scrolled .logo {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  #nav.scrolled .nav-toggle {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+  }
+
+  #nav.scrolled .nav-links {
+    z-index: 1;
+    padding: 90px 12vw 32px;
+  }
+
+  #nav.scrolled.open {
+    inset: 0;
+    width: 100%;
+    height: 100svh;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+    animation: none;
+  }
+
+  #nav.scrolled.open .nav-inner {
+    width: min(1200px, 94vw);
+    height: var(--nav-h);
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  #nav.scrolled.open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+@keyframes nav-bubble-drop {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #nav.scrolled {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+
+  #nav.scrolled .nav-links {
+    transition: none;
+  }
+}
+
+/* Final scroll-menu state: a compact PM bubble opens a full-screen menu. */
+@media (min-width: 761px) {
+  html body #nav.scrolled:not(.open) {
+    position: fixed;
+    inset: 18px 22px auto auto;
+    z-index: 1200;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    max-height: calc(100svh - 36px);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(18, 18, 22, 0.9);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+            backdrop-filter: blur(18px) saturate(140%);
+    transform: translateY(0);
+    animation: nav-bubble-drop 0.42s var(--ease) both;
+    transition: none;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0;
+    padding: 5px 8px 5px 14px;
+  }
+
+  html body #nav.scrolled:not(.open) .logo {
+    position: static;
+    display: block;
+    padding: 0;
+    border: 0;
+    font-size: 1rem;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-toggle {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    margin: 0;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-links {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    width: 100%;
+    height: 100svh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(8px, 1.8vh, 18px);
+    margin: 0;
+    padding: 90px 24px 40px;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.24s ease, transform 0.3s var(--ease), visibility 0.24s;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-links a {
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    padding: 7px 8px;
+    border: 0;
+    font-size: clamp(1.35rem, 3vw, 2.25rem);
+  }
+
+  html body #nav.scrolled.open {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    width: 100%;
+    height: 100svh;
+    max-height: 100svh;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+    animation: none;
+  }
+
+  html body #nav.scrolled.open .nav-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1200px, 94vw);
+    height: 68px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  html body #nav.scrolled.open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 760px) {
+  html body #nav.scrolled:not(.open) {
+    position: fixed;
+    inset: 12px 14px auto auto;
+    z-index: 1200;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    background: rgba(18, 18, 22, 0.92);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.32);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+            backdrop-filter: blur(18px) saturate(140%);
+    transform: none;
+    animation: nav-bubble-drop 0.42s var(--ease) both;
+    transition: none;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 52px;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 5px 8px 5px 14px;
+  }
+
+  html body #nav.scrolled:not(.open) .logo {
+    position: static;
+    display: block;
+    padding: 0;
+    border: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  html body #nav.scrolled:not(.open) .nav-toggle {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    margin: 0;
+  }
+
+  html body #nav.scrolled.open {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: rgba(11, 11, 14, 0.97);
+    box-shadow: none;
+    -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(24px);
+    transform: none;
+    animation: none;
+  }
+
+  html body #nav.scrolled.open .nav-inner {
+    position: relative;
+    z-index: 2;
+    width: min(1200px, 94vw);
+    height: var(--nav-h);
+    margin-inline: auto;
+    padding: 0;
+  }
+
+  html body #nav.scrolled.open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #nav.scrolled:not(.open) {
+    animation: none;
+  }
+}
+
+html body #nav.scrolled:not(.open) .nav-inner .nav-links {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+html body #nav.scrolled.open .nav-inner .nav-links {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  display: flex !important;
+}
+
+@keyframes nav-bubble-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nav-menu-unfold {
+  from {
+    clip-path: inset(
+      calc(100% - var(--nav-pill-bottom) - 54px)
+      calc(100% - var(--nav-pill-left) - 106px)
+      var(--nav-pill-bottom)
+      var(--nav-pill-left)
+      round 999px
+    );
+  }
+
+  to {
+    clip-path: inset(0 round 0);
+  }
+}
+
+html body #nav.scrolled.open {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1200 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100svh !important;
+  min-width: 100vw !important;
+  max-width: 100vw !important;
+  max-height: 100svh !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(11, 11, 14, 0.97) !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(24px);
+          backdrop-filter: blur(24px);
+  transform: none !important;
+  transition: none !important;
+  animation: nav-menu-unfold 0.58s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  --nav-pill-left: 24px;
+  --nav-pill-bottom: 24px;
+}
+
+html body #nav.scrolled.open .nav-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(1200px, 94vw);
+  height: var(--nav-h);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-inline: auto;
+  padding: 0;
+}
+
+html body #nav.scrolled.open #navLinks {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex !important;
+  width: min(560px, calc(100vw - 48px));
+  height: 100vh;
+  height: 100svh;
+  max-height: 100svh;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(4px, 0.8vh, 8px);
+  margin-inline: auto;
+  padding: 86px 0 32px;
+  overflow-y: auto;
+  background: transparent;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: none !important;
+  animation: none;
+  counter-reset: nav-destination;
+}
+
+@media (min-width: 761px) {
+  html body #nav.scrolled:not(.open),
+  html body #nav.scrolled:not(.open):hover,
+  html body #nav.scrolled:not(.open):focus-within {
+    inset: auto auto 24px 24px;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    max-height: 54px;
+    overflow: hidden;
+    border-radius: 999px;
+  }
+
+  html body #nav.scrolled:not(.open):not(:hover):not(:focus-within) {
+    animation: nav-bubble-arrive 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  html body #nav.scrolled:not(.open):hover .nav-inner,
+  html body #nav.scrolled:not(.open):focus-within .nav-inner {
+    display: flex;
+    width: 100%;
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0;
+    padding: 5px 8px 5px 14px;
+  }
+}
+
+@media (max-width: 760px) {
+  html body #nav.scrolled:not(.open),
+  html body #nav.scrolled:not(.open):hover,
+  html body #nav.scrolled:not(.open):focus-within {
+    inset: auto auto 16px 14px;
+    width: 106px;
+    height: 54px;
+    min-height: 0;
+    max-height: 54px;
+    overflow: hidden;
+    border-radius: 999px;
+  }
+
+  html body #nav.scrolled:not(.open):not(:hover):not(:focus-within) {
+    animation: nav-bubble-arrive 0.62s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  html body #nav.scrolled:not(.open):hover .nav-inner,
+  html body #nav.scrolled:not(.open):focus-within .nav-inner {
+    display: flex;
+    width: 100%;
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 0;
+    padding: 5px 8px 5px 14px;
+  }
+}
+
+html body #nav.scrolled:not(.open):hover .logo,
+html body #nav.scrolled:not(.open):focus-within .logo {
+  position: static;
+  display: block;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+html body #nav.scrolled:not(.open):hover .nav-toggle,
+html body #nav.scrolled:not(.open):focus-within .nav-toggle {
+  display: flex;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  margin: 0;
+}
+
+html body #nav.scrolled:not(.open):hover,
+html body #nav.scrolled:not(.open):focus-within {
+  animation: none !important;
+  transform: none;
+  transition: none;
+}
+
+html body #nav.scrolled.open #navLinks {
+  display: flex !important;
+  width: min(560px, calc(100vw - 48px));
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(2px, 0.8vh, 8px);
+  margin-inline: auto;
+  padding: 86px 0 32px;
+  counter-reset: nav-destination;
+}
+
+html body #nav.scrolled.open #navLinks a {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 68px;
+  height: auto;
+  padding: 12px 12px 14px;
+  overflow: visible !important;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-dim);
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.25;
+  text-align: left;
+  counter-increment: nav-destination;
+  transition: color 0.2s ease, padding-left 0.25s ease;
+}
+
+html body #nav.scrolled.open #navLinks a::before {
+  position: static;
+  display: block;
+  align-self: center;
+  overflow: visible;
+  content: "0" counter(nav-destination);
+  color: var(--accent-soft);
+  font-family: monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0;
+  transform: none;
+}
+
+html body #nav.scrolled.open #navLinks a::after {
+  display: none;
+}
+
+html body #nav.scrolled.open #navLinks a:hover,
+html body #nav.scrolled.open #navLinks a:focus-visible,
+html body #nav.scrolled.open #navLinks a.active {
+  padding-left: 18px;
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  html body #nav.scrolled.open {
+    --nav-pill-left: 14px;
+    --nav-pill-bottom: 16px;
+  }
+
+  html body #nav.scrolled.open #navLinks {
+    width: min(520px, calc(100vw - 36px));
+    padding: calc(var(--nav-h) + 18px) 0 24px;
+  }
+
+  html body #nav.scrolled.open #navLinks a {
+    grid-template-columns: 2rem 1fr;
+    gap: 9px;
+    min-height: 60px;
+    padding: 10px 8px 12px;
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html body #nav.scrolled:not(.open),
+  html body #nav.scrolled.open,
+  html body #nav.scrolled.open #navLinks a {
+    animation: none;
+    transition: none;
+  }
+
+  html body #nav.scrolled.open {
+    animation: none !important;
+    clip-path: inset(0 round 0) !important;
   }
 }

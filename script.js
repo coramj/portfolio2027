@@ -59,78 +59,19 @@ if (prefersReduced) {
 }
 
 /* ============================================================
-   3. NAV — fondo al scrollear + link activo + split-flap
+   3. NAV — estado compacto al desplazarse + enlace activo
    ============================================================ */
 const nav = $('#nav');
 
 if (nav) {
-  if (!prefersReduced && window.matchMedia('(min-width: 761px)').matches) {
-    nav.classList.add('intro-open');
-    window.setTimeout(() => nav.classList.remove('intro-open'), 3200);
-  }
-
-  const onScroll = () => {
-    nav.classList.toggle('scrolled', window.scrollY > 16);
+  const updateNavState = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
   };
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+
+  updateNavState();
+  window.addEventListener('scroll', updateNavState, { passive: true });
 }
 
-/* ---------- Split-flap: mapeo sección → número ---------- */
-const sectionNumbers = {
-  'top': '00',
-  'sobre-mi': '01',
-  'experiencia': '02',
-  'formacion': '03',
-  'skills': '04',
-  'tech': '05',
-  'idiomas': '06',
-  'galeria': '07',
-  'contacto': '08'
-};
-
-const flapDigits = $$('.flap-digit');
-let currentFlapValue = '00';
-
-function updateFlap(newValue) {
-  if (!flapDigits.length) return;
-  if (newValue === currentFlapValue) return;
-  currentFlapValue = newValue;
-
-  const chars = newValue.split('');
-  flapDigits.forEach((digit, i) => {
-    const newChar = chars[i] ?? '0';
-    if (digit.textContent === newChar) return;
-
-    digit.classList.add('flipping');
-    // Cambio de texto justo cuando la tarjeta está plana (mitad de la animación)
-    setTimeout(() => {
-      digit.textContent = newChar;
-    }, 225);
-    setTimeout(() => digit.classList.remove('flipping'), 460);
-  });
-}
-
-// Inicialización
-if (flapDigits.length) {
-  const chars = '00'.split('');
-  flapDigits.forEach((d, i) => { d.textContent = chars[i]; });
-}
-
-/* ---------- Easter egg: click en el flap lo hace "recalibrar" ---------- */
-const navFlap = $('#navFlap');
-if (navFlap) {
-  navFlap.addEventListener('click', () => {
-    flapDigits.forEach((d, i) => {
-      setTimeout(() => {
-        d.classList.add('flipping');
-        setTimeout(() => d.classList.remove('flipping'), 460);
-      }, i * 90);
-    });
-  });
-}
-
-/* ---------- Link activo + actualización del flap ---------- */
 const sections = $$('main section[id]');
 const navLinks = $$('.nav-links a');
 
@@ -143,10 +84,6 @@ if (sections.length && navLinks.length) {
       navLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
       });
-
-      if (sectionNumbers[id]) {
-        updateFlap(sectionNumbers[id]);
-      }
     });
   }, {
     rootMargin: '-40% 0px -55% 0px'

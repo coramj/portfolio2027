@@ -36,44 +36,38 @@
   <div class="cursor-ring" aria-hidden="true"></div>
 
   <!-- ============================================================
-       NAV — split-flap aeroportuario
+       NAV — navegación principal
        ============================================================ -->
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#top" class="logo" aria-label="Volver arriba">
-        <span class="logo-text">PM<span class="logo-dot">.</span></span>
-      </a>
+  <div class="nav-slot">
+    <header class="nav" id="nav">
+      <div class="nav-inner">
+        <a href="#top" class="logo" aria-label="Volver arriba">
+          <span class="logo-text">PM<span class="logo-dot">.</span></span>
+        </a>
 
-      <div class="nav-marker">
-        <span class="nav-marker-label">EN RUTA</span>
-        <div class="nav-flap" id="navFlap" aria-hidden="true" title="Sección actual">
-          <div class="flap-digit">0</div>
-          <div class="flap-digit">0</div>
-        </div>
+        <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#formacion">Formación</a>
+          <a href="#skills">Skills</a>
+          <a href="#tech">Tech</a>
+          <a href="#idiomas">Idiomas</a>
+          <a href="#galeria">Galería</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <button
+          class="nav-toggle"
+          id="navToggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="navLinks"
+        >
+          <span></span><span></span><span></span>
+        </button>
       </div>
-
-      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#formacion">Formación</a>
-        <a href="#skills">Skills</a>
-        <a href="#tech">Tech</a>
-        <a href="#idiomas">Idiomas</a>
-        <a href="#galeria">Galería</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-
-      <button
-        class="nav-toggle"
-        id="navToggle"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+    </header>
+  </div>
 
   <main>
 
